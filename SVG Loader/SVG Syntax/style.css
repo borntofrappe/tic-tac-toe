@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  /* center in the viewport */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color picked up by the svg through the currentColor value */
+  color: hsl(53, 95%, 53%);
+  background: hsl(360, 100%, 65%);
+}
+svg {
+  width: 350px;
+  height: auto;
+}

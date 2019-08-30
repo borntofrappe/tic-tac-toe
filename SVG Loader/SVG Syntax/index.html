@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-12">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic Tac Toe - SVG Syntax</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <svg viewBox="0 0 104 52" width="104" height="52">
+        <defs>
+            <circle
+                id="o"
+                cx="0"
+                cy="0"
+                r="18"
+                fill="none"
+                stroke-width="16"
+                stroke="currentColor">
+            </circle>
+            <!-- plus sign with rounded corners
+            ! for the size consider the space occupied by the circle (18 for the radius, (16 / 2) for the stroke's width, 26 in total)
+            -->
+            <path
+                id="x"
+                fill="currentColor"
+                d="M -26 0 v -6 a 2 2 0 0 1 2 -2 h 14 a 2 2 0 0 0 2 -2 v -14 a 2 2 0 0 1 2 -2 h 12 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 0 2 2 h 14 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 0 -2 2 v 14 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 0 -2 -2  h -14 a 2 2 0 0 1 -2 -2">
+            </path>
+
+        </defs>
+
+        <!-- center the shapes in the svg -->
+        <g transform="translate(52 26)">
+            <!-- include the two icons side by side
+            ! translate the shapes to separate them horizontally (26 being half the width fo the two glyphs)
+            -->
+            <use href="#o" transform="translate(26 0)"></use>
+            <!-- ! rotate the plus sign to show the x character -->
+            <use href="#x" transform="translate(-26 0) rotate(45)"></use>
+        </g>
+    </svg>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
