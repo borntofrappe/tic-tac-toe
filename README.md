@@ -4,6 +4,8 @@
 
 ## Preface
 
-Ultimately, I plan to document this project with a series of posts. 
+Ultimately, I plan to document this project with a series of posts.
 
 In the different sub-folder you find the markup, stylesheet and script developing the game, one step at a time.
+
+- SVG Loader. A graphic built with SVG syntax and animated with CSS keyframes to introduce the game.
