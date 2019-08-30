@@ -28,6 +28,14 @@
                 fill="currentColor"
                 d="M -26 0 v -6 a 2 2 0 0 1 2 -2 h 14 a 2 2 0 0 0 2 -2 v -14 a 2 2 0 0 1 2 -2 h 12 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 0 2 2 h 14 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 0 -2 2 v 14 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 0 -2 -2  h -14 a 2 2 0 0 1 -2 -2">
             </path>
+
+            <!-- shape used to connect the two signs -->
+            <path
+                id="goo"
+                fill="currentColor"
+                d="M -2.5 -8 a 5 5 0 0 0 5 -5 v 26 a 5 5 0 0 0 -5 -5"><!-- start at (-2.5 -8) to have the shape scaled from its center -->
+            </path>
+
         </defs>
 
         <!-- center the shapes in the svg -->
@@ -48,6 +56,12 @@
                             <g transform="translate(26 0)">
                                 <g>
                                     <use href="#o"></use>
+                                </g>
+                                <!-- position the goo shape in between the x and o -->
+                                <g transform="translate(-25.5 0)">
+                                    <g class="scale-goo" transform="scale(0)"><!-- scale this group as the x and o connect -->
+                                        <use href="#goo" x="0" y="0"></use>
+                                    </g>
                                 </g>
                             </g>
                         </g>
