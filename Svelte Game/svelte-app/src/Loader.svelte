@@ -1,3 +1,12 @@
+<script>
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+
+  function iteration() {
+    dispatch('iteration');
+  }
+</script>
 <style>
   svg {
     display: block;
@@ -93,40 +102,12 @@
   }
 </style>
 
-<svg viewBox="0 0 144 104" width="144" height="104">
-    <defs>
-        <circle
-            id="o"
-            cx="0"
-            cy="0"
-            r="18"
-            fill="none"
-            stroke-width="16"
-            stroke="currentColor">
-        </circle>
-        <!-- plus sign with rounded corners
-        ! for the size consider the space occupied by the circle (18 for the radius, (16 / 2) for the stroke's width, 26 in total)
-        -->
-        <path
-            id="x"
-            fill="currentColor"
-            d="M -26 0 v -6 a 2 2 0 0 1 2 -2 h 14 a 2 2 0 0 0 2 -2 v -14 a 2 2 0 0 1 2 -2 h 12 a 2 2 0 0 1 2 2 v 14 a 2 2 0 0 0 2 2 h 14 a 2 2 0 0 1 2 2 v 12 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 0 -2 2 v 14 a 2 2 0 0 1 -2 2 h -12 a 2 2 0 0 1 -2 -2 v -14 a 2 2 0 0 0 -2 -2  h -14 a 2 2 0 0 1 -2 -2">
-        </path>
-
-        <!-- shape used to connect the two signs -->
-        <path
-            id="goo"
-            fill="currentColor"
-            d="M -2.5 -8 a 5 5 0 0 0 5 -5 v 26 a 5 5 0 0 0 -5 -5"><!-- start at (-2.5 -8) to have the shape scaled from its center -->
-        </path>
-
-    </defs>
-
+<svg on:animationiteration|once={iteration} viewBox="0 0 144 104" width="144" height="104">
     <!-- center the shapes in the svg -->
     <g transform="translate(72 52)">
         <g class="rotate-shapes" transform="rotate(0)"><!-- rotate this group to rotate the shapes around the center -->
             <g class="translate-zero" transform="translate(-20 0)"><!-- translate this group to 0 to have the x approach the center and connect with the o -->
-                <g  transform="translate(-26 0)">
+                <g transform="translate(-26 0)">
                     <g class="rotate-x"><!-- rotate this group to rotate the x sign -->
                         <g transform="rotate(45)">
                             <use href="#x"></use>
