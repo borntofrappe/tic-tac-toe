@@ -2,7 +2,7 @@
   import Form from './Form.svelte';
   import Grid from './Grid.svelte';
 
-  let choice = 'x';
+  let choice;
   function handleSelection(e) {
     choice = e.detail;
   }
