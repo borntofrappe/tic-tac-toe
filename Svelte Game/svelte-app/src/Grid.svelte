@@ -1,12 +1,60 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+
+
   export let choice;
   let grid = Array(9).fill('');
+  const combinations = [
+		[0, 1, 2],
+		[3, 4, 5],
+		[6, 7, 8],
+		[0, 3, 6],
+		[1, 4, 7],
+		[2, 5, 8],
+		[0, 4, 8],
+		[2, 4, 6],
+  ];
+
+  const checkVictory = () => {
+    for(let combination of combinations) {
+      const [a, b, c] = combination;
+      if(grid[a] && grid[a] === grid[b] && grid[a] === grid[c]) {
+        return [a, b, c];
+      }
+    }
+    return false;
+  }
+  const checkTie = () => !grid.includes('');
 
   const toggleChoice = () => choice = choice === 'x' ? 'o' : 'x';
   const selectCell = (index) => {
     grid = [...grid.slice(0, index), choice, ...grid.slice(index + 1)];
-    toggleChoice();
-    console.log(choice);
+    if(checkVictory()) {
+      dispatch('victory');
+      const [a, b, c] = checkVictory();
+      const buttons = document.querySelectorAll('.grid button');
+      buttons.forEach((button, index) => {
+        if(![a, b, c].includes(index)) {
+          const svg = button.querySelector('svg');
+          if(svg) {
+            svg.style.opacity = 0.2;
+          }
+        }
+      });
+      grid = grid.map(cell => cell ? cell : ' ');
+    } else if(checkTie()) {
+      dispatch('tie');
+      const buttons = document.querySelectorAll('.grid button');
+      buttons.forEach((button, index) => {
+        const svg = button.querySelector('svg');
+        if(svg) {
+          svg.style.opacity = 0.2;
+        }
+      });
+    } else {
+      toggleChoice();
+    }
   }
 </script>
 
@@ -39,6 +87,9 @@
     color: hsl(53, 95%, 53%);
     padding: 0.5rem;
     overflow: hidden;
+  }
+  .grid button.loss {
+    opacity: 0.2;
   }
   .grid button:nth-of-type(3n - 1) {
     border-right: 0.5rem solid currentColor;
@@ -75,6 +126,7 @@
     display: block;
     width: 100%;
     height: 100%;
+    transition: opacity 0.2s ease-out;
   }
 </style>
 
@@ -90,7 +142,7 @@
             </g>
           </g>
         </svg>
-        {:else}
+        {:else if cell === 'o'}
         <svg viewBox="0 0 52 52" width="52" height="52">
           <g transform="translate(26 26)">
             <use href="#o"></use>

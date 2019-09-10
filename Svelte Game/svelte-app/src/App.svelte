@@ -3,7 +3,7 @@
 	import Loader from './Loader.svelte';
 	import Game from './Game.svelte';
 
-	let isLoading = true;
+	let isLoading = false;
 
 	function handleIteration() {
 		isLoading = false;
