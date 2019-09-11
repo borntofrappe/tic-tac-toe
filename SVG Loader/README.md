@@ -1,11 +1,11 @@
 # SVG Loader
 
-The loader is built in the following steps:
+The sub-folders describe the development of the loader in three steps:
 
-- **SVG syntax**. Drawing the basic shapes behind the component;
+1. **SVG syntax**. Drawing the shapes for the **x** and **o** signs.
 
-- **Utility groups**. Adding group elements for the animation.
+1. **Utility groups**. Adding group elements for the animation.
 
-- **CSS animation**. Adding keyframe animations.
+1. **CSS animation**. Adding keyframe animations.
 
-The final project has also a _goo_ shape, to fake a goeey effect between the shapes.
+The final project has also a _goo_ shape, to fake a goo-y effect between the shapes.

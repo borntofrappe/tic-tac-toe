@@ -8,6 +8,6 @@ Ultimately, I plan to document this project with a series of posts.
 
 In the different sub-folder you find the markup, stylesheet and script developing the game, one step at a time.
 
-- SVG Loader. A graphic built with SVG syntax and animated with CSS keyframes to introduce the game.
+- SVG Loader. In this folder you find the loader developed for the application with SVG syntax. I have divided the effort in three folders to progressively build an animated loader in which the two signs **x** and **o** swap place,
 
-- Svelte. The game built through the svelte framework.
+- Svelte. In this folder you find the game developed with the **Svelte** framework.
