@@ -7,7 +7,7 @@
 	import Game from './Game.svelte';
 
 	// show the loader, at least until the first iteration of its animation
-	let isLoading = false;
+	let isLoading = true;
 	function handleIteration() {
 		isLoading = false;
 	}

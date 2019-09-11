@@ -22,11 +22,12 @@ The game is planned with the following structure:
 
 - [x] after every more and after checking for a victory, the project checks for a tie. If no more buttons are available, the game returns to the selection stage after a brief delay.
 
-## Transitions
+## TODO
 
-It is essential to transition between the different stages of the game to provide apt feedback:
+While the application works and proves to be a rather teaching project, it can be definitely improved:
 
-- as the loader is removed, the idea is to include the selection with the same shapes. The transition, while seamless, requires an additional cue to highlight the interactivity of the existing elements;
+- [ ] review the transition between the components and the affordances of each stage. It should be more clear that the form element allows for a selection between the two signs.
 
-- as a choice is made, and to get started, the shapes should disappear as the grid then appears.
+- [ ] consider increasing the size of the grid and most importantly animating the path elements for the two signs.
 
+- [ ] to stress a victory, consider adding a stroke on top of the adjacent signs.
