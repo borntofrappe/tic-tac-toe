@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition';
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
@@ -9,6 +10,10 @@
 
   // array describing the contents of the grid (x, o, '')
   let grid = Array(9).fill('');
+  // array describing the 9 buttons (to later access the elements in case of a victory/tie)
+  let elements = Array(9);
+  // variable dictating a class of .gameover on the grid container (to hide the container before the element is actually removed in favor of the form)
+  let gameover = false;
   // describe the winning combinations, through the indexes of adjacent signs
   const combinations = [
 		[0, 1, 2],
@@ -46,25 +51,32 @@
     if(checkVictory()) {
       // dispatch the finish event to return to the game component
       dispatch('finish');
-      // highlight the winning buttons
+      // highlight the winning buttons by reducing the opacity svg elements nested in the buttons which do not represent the winning combination
       const [a, b, c] = checkVictory();
-      const buttons = document.querySelectorAll('.grid button');
-      buttons.forEach((button, index) => {
-        if(![a, b, c].includes(index)) {
-          const svg = button.querySelector('svg');
-          if(svg) {
-            svg.style.opacity = 0.2;
-          }
+      elements.forEach((element, index) => {
+        const node = element.childNodes[0];
+        if(node.nodeType === 1 && ![a, b, c].includes(index)) {
+          node.style.opacity = 0.2;
         }
       });
       // populate the grid to avoid clicking on other elements
       grid = grid.map(cell => cell ? cell : ' ');
+      // set gameover to true to conceal the grid after a brief delay
+      gameover = true;
     } else if(checkTie()) {
       // check for tie
       // dispatch the finish event
       dispatch('finish');
-      // reduce the opacity of all buttons
-      container.style.opacity = 0.2;
+      // reduce the opacity of all signs
+        console.log(elements);
+      elements.forEach(element => {
+        const node = element.childNodes[0];
+        if(node.nodeType === 1) {
+          node.style.opacity = 0.2;
+        }
+      })
+      // set gameover to true to conceal the grid after a brief delay
+      gameover = true;
     } else {
       // no victory, no tie, toggle the sign
       toggleChoice();
@@ -78,8 +90,13 @@
     max-width: 300px;
     display: flex;
     flex-wrap: wrap;
-    /* transition for the change in opacity */
+  }
+  /* as the class of .gameover is added, transition the grid out of sight */
+  .grid.gameover {
     transition: opacity 0.2s ease-out;
+    /* delay to have the grid disappear as the gameover is perceived and before the element is actually removed in favor of the form */
+    transition-delay: 3s;
+    opacity: 0;
   }
   @supports (display: grid) {
     .grid {
@@ -147,7 +164,7 @@
   }
 </style>
 
-<div class="grid">
+<div class="grid" in:fade class:gameover>
   <!-- for each item of the grid add a button
   - binding the button to one of the variables in the elements array
   - disabled if the button contains something
@@ -155,7 +172,7 @@
   - displaying the x and o signs to match the possible value
   -->
   {#each grid as cell, i}
-    <button disabled={cell} on:click={() => selectCell(i)}>
+    <button bind:this={elements[i]} disabled={cell} on:click={() => selectCell(i)}>
       {#if cell}
         {#if cell === 'x'}
         <svg viewBox="0 0 52 52" width="52" height="52">

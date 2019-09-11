@@ -1,4 +1,6 @@
 <script>
+  import { fade } from 'svelte/transition';
+
   // once a selection is made, dispatch the selection event to inform the parent component of the chosen sign
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
@@ -14,7 +16,6 @@
   }
   form div {
     position: relative;
-    overflow: hidden;
   }
   form div svg {
     display: block;
@@ -26,6 +27,15 @@
     width: 100%;
     height: 100%;
     opacity: 0;
+  }
+  /* absolute position the separator line in the center of the div */
+  form svg#separator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: auto;
   }
 </style>
 
@@ -47,7 +57,12 @@
       </svg>
     </label>
   </div>
-
+  <!-- line separating the two options
+  made to fade in
+  -->
+  <svg in:fade id="separator" viewBox="0 0 2 100" width="6" height="300">
+    <path d="M 1 0 v 100" fill="none" stroke="currentColor" stroke-width="2"></path>
+  </svg>
   <div>
     <input type="radio" bind:group={selection} value="o" id="o" name="o" />
     <label for="o">

@@ -1,5 +1,6 @@
 <!-- component describing the tic-tac-toe game, from selection to grid -->
 <script>
+
   // component describing the form to select between x and o
   import Form from './Form.svelte';
   // component describing the 3x3 grid to play the actual game
@@ -18,8 +19,9 @@
     const timeout = setTimeout(() => {
       choice = null;
       clearTimeout(timeout);
-    }, 3000)
+    }, 3500)
   }
+
 </script>
 
 {#if choice}
