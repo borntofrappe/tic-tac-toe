@@ -1,8 +1,10 @@
+<!-- component describing the svg loader -->
 <script>
+  // following the animationiteration event dispatch a fitting method
+  // this allows the parent component to know when the animation iterates
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
-
   function iteration() {
     dispatch('iteration');
   }
@@ -102,6 +104,7 @@
   }
 </style>
 
+<!-- following the animationiteration event (and only once) call the function to dispatch the iteration event -->
 <svg on:animationiteration|once={iteration} viewBox="0 0 144 104" width="144" height="104">
     <!-- center the shapes in the svg -->
     <g transform="translate(72 52)">

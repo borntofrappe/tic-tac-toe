@@ -1,4 +1,5 @@
 <script>
+  // once a selection is made, dispatch the selection event to inform the parent component of the chosen sign
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
@@ -28,10 +29,15 @@
   }
 </style>
 
+<!-- in a form display two options side by side -->
 <form>
   <div>
     <input type="radio" bind:group={selection} value="x" id="x" name="x" />
     <label for="x">
+      <!-- use the svg shapes used in the loader
+      ! while the shapes are 52x52, specify a viewBox which is half wide as the viewBox of the loader
+      this to maintain the spacing between the signs
+      -->
       <svg viewBox="0 0 72 52" width="72" height="52">
         <g transform="translate(26 26)">
           <g transform="rotate(45)">

@@ -1,3 +1,4 @@
+<!-- component describing the shapes used throughout the project -->
 <svg viewBox="0 0 144 104" width="144" height="104" style="display: none;">
   <defs>
       <circle
@@ -24,6 +25,5 @@
           fill="currentColor"
           d="M -2.5 -8 a 5 5 0 0 0 5 -5 v 26 a 5 5 0 0 0 -5 -5"><!-- start at (-2.5 -8) to have the shape scaled from its center -->
       </path>
-
   </defs>
 </svg>
